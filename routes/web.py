@@ -1,4 +1,5 @@
 from masonite.routes import Route
+from masonite.api import Api
 
 ROUTES = [
     Route.get("/", "WelcomeController@show"),
@@ -10,7 +11,9 @@ ROUTES = [
         Route.put('/update/@id', "UserController@update").name("update"),
         Route.delete('/destroy/@id', "UserController@destroy").name("destroy"),
         Route.post('/login', "UserController@login"),
-        Route.get('/logout', "UserController@logout"),
+        Route.get('/logout/@token', "UserController@logout"),
     # ], prefix='/users', name='users', middleware=('auth',)
     # )
     ]
+
+ROUTES += Api.routes(auth_route="/api/auth", reauth_route="/api/reauth")
