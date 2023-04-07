@@ -53,6 +53,6 @@ class UserController(Controller):
     def get_current_user(self, auth: Auth, response: Response, request:Request, user:User):
         token =[request.header('Authorization'), request.cookie('token'), request.user()]
         user_token=(request.header('Authorization').split()[1])
-        decoded_user = user.attempt_by_token(token=user_token)[:3]
+        decoded_user = user.attempt_by_token(user_token)
         return decoded_user
 
