@@ -40,14 +40,12 @@ class UserController(Controller):
     #     login = auth.attempt(request.input("username"), request.input("password"))
     #     return login.name if login else False
 
-    def logout(self, auth: Auth, response: Response, request:Request):
-        # user = auth.logout()
-        print(auth._user,'&&&&&&&&&&&&&&&&')
-        token = request.param('token')
-        print(token,'&&&&&&&&&&&&&&&&')
-        response.delete_cookie(token)
-        request.remove_user()
-        print(auth._user,'&&&&&&&&&&&&&&&&')
+    def logout(self, auth: Auth, response: Response, request:Request, user:User):
+        token =[request.header('Authorization'), request.cookie('token'), request.user()]
+        user_token=(request.header('Authorization').split()[1])
+        decoded_user = user.attempt_by_token(user_token)
+        decoded_user.api_token= None
+        decoded_user.save()
         return True
 
     def get_current_user(self, auth: Auth, response: Response, request:Request, user:User):

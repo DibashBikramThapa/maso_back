@@ -11,7 +11,6 @@ ROUTES = [
         Route.put('/update/@id', "UserController@update").name("update"),
         Route.delete('/destroy/@id', "UserController@destroy").name("destroy"),
         Route.post('/login', "UserController@login"),
-        Route.get('/logout/@token', "UserController@logout"),
     # ], prefix='/users', name='users', middleware=('auth',)
     # )
     ]
