@@ -4,5 +4,5 @@ from masonite.middleware import VerifyCsrfToken as Middleware
 class VerifyCsrfToken(Middleware):
 
     exempt = [
-        "/create", "/update", "/destroy"
+        "/create", "/update", "/destroy","/login"
         ]
