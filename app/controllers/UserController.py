@@ -4,6 +4,7 @@ from masonite.request import Request
 from masonite.response import Response
 from ..models.User import User
 from masonite.authentication import Auth
+import json
 
 class UserController(Controller):
 
@@ -14,7 +15,7 @@ class UserController(Controller):
 
     def create(self, request:Request, auth: Auth):
         user = auth.register(request.only("name", "email", "password"))
-        return f"User created {user.name if user else user}"
+        return f"{user.name if user else json.dumps(False)}"
 
     def store(self, request:Request):
         return view.render("")
