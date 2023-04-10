@@ -2,6 +2,7 @@ from masonite.controllers import Controller
 from masonite.views import View
 from ..models.Post import Post
 from ..models.User import User
+from ..models.Categorie import Categorie
 from masonite.request import Request
 from masonite.response import Response
 import json
@@ -25,7 +26,7 @@ class BlogController(Controller):
 
     def show(self, view: View,request:Request, response:Response, user:User):
         user_id = user.get_user_from_auth(request.header('Authorization'))
-        posts = Post.all() if user_id.is_admin else Post.where('author_id',user_id.id).get() 
+        posts = Post.with_('categories','authors').all() if user_id.is_admin else Post.with_('categories','authors').where('author_id',user_id.id).get()
         return posts
 
     def edit(self, view: View):
