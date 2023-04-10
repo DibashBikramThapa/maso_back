@@ -18,7 +18,7 @@ class BlogController(Controller):
 
         create_param['author_id'] = user_id.id
         post = Post.create(create_param)
-        return f"Post created {post.title, post.author_id}"
+        return f"Post: {post.title} by {user_id.name}"
 
     def store(self, view: View):
         return view.render("")

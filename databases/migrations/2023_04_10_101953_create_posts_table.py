@@ -13,7 +13,7 @@ class CreatePostsTable(Migration):
             table.string('title')
             table.integer('author_id').unsigned()
             table.foreign('author_id').references('id').on('users')
-            table.string('body')
+            table.longtext('body')
             table.timestamps()
 
     def down(self):

@@ -17,4 +17,14 @@ class CategoryController(Controller):
         # user_id = user.get_user_from_auth(request.header('Authorization'))
         category.delete()
         return "category deleted"
+    
+    def show(self, view: View, request:Request, response:Response):
+        category = Categorie.all()
+        param = []
+        for each in category:
+            param.append({
+                'id':each.id,
+                'title': each.title
+            })
+        return param
         

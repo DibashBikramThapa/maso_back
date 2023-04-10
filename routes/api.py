@@ -8,6 +8,7 @@ ROUTES = [
 
 ROUTES+= [
     Route.post('/blogs/category/create', "CategoryController@create"),
+    Route.get('/blogs/category/show', "CategoryController@show"),
 ]
 
 ROUTES+= [
